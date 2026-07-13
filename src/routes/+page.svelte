@@ -27,5 +27,6 @@ import {resolve} from "$app/paths";
         <div class="text-lg">directory</div>
         <a href={resolve("/why")} class="linkywinky">why</a>
         <a href={resolve("/feature-aspirations")} class="linkywinky">feature-aspirations</a>
+        <a href={resolve("/markdown")} class="linkywinky">markdown</a>
     </div>
 </div>
