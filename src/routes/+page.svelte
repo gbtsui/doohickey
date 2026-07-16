@@ -28,5 +28,6 @@ import {resolve} from "$app/paths";
         <a href={resolve("/why")} class="linkywinky">why</a>
         <a href={resolve("/feature-aspirations")} class="linkywinky">feature-aspirations</a>
         <a href={resolve("/markdown")} class="linkywinky">markdown</a>
+        <a href={resolve("/habits")} class="linkywinky">habits</a>
     </div>
 </div>
