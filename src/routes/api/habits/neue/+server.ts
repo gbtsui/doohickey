@@ -6,7 +6,8 @@ export const POST = (req) => {
 	//alle varten auf das licht
 	/*
 	request stuff:
-	need name, description
+	need name, description, weekly goal
+
 	 */
 
 
