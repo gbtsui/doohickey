@@ -51,6 +51,7 @@
 		"vitest-browser-svelte": "^2.1.1"
 	},
 	"dependencies": {
-		"@fontsource/noto-serif": "^5.2.9"
+		"@fontsource/noto-serif": "^5.2.9",
+		"zod": "^4.4.3"
 	}
 }
