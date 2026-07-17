@@ -3,7 +3,8 @@
 import { error, json } from '@sveltejs/kit';
 import * as database from '$lib/server/db';
 import { habit } from '$lib/server/db/schema';
-import { HabitSchema } from '$lib/server/zod/schema';
+import { HabitRequestSchema } from '$lib/server/zod/schema';
+import { verifyToken } from '$lib/server/password';
 
 export const POST = async ({ request }) => {
 	//alle varten auf das licht
@@ -16,7 +17,7 @@ export const POST = async ({ request }) => {
 	//const {name, description, weeklyGoal} = await request.json()
 	const reqBody = await request.json();
 	//const {name, description, weeklyGoal} = await HabitSchema.parseAsync(reqBody);
-	const zodResult =  HabitSchema.safeParse(reqBody);
+	const zodResult =  HabitRequestSchema.safeParse(reqBody);
 
 	if (!zodResult.success) {
 		return json(
@@ -28,7 +29,19 @@ export const POST = async ({ request }) => {
 		);
 	}
 
-	const { name, description, weeklyGoal } = zodResult.data;
+	const { name, description, weeklyGoal, OTP } = zodResult.data;
+
+	const OTPSuccess = await verifyToken(OTP)
+
+	if (!OTPSuccess.valid) {
+		return json(
+			{
+				success: false,
+				errors: "Wrong OTP"
+			},
+			{ status: 401}
+		)
+	}
 
 	console.log(name, description, weeklyGoal);
 
