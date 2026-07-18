@@ -20,15 +20,8 @@ const API = "https://slack.com/api"
 import {SLACK_BOT_TOKEN} from "$env/static/private"
 
 export const slackFetch = async (endpoint: string, body: object) => {
-	/*
-	console.log(process.env.SLACK_BOT_TOKEN)
 
-	console.log("token exists:", !!process.env.SLACK_BOT_TOKEN)
-	console.log("token prefix:", process.env.SLACK_BOT_TOKEN?.slice(0, 10))
-	
-	 */
-
-	console.log(SLACK_BOT_TOKEN)
+	//console.log(SLACK_BOT_TOKEN)
 	const response = await fetch(`${API}/${endpoint}`, {
 		method: "POST",
 		headers: {
@@ -47,17 +40,6 @@ export const slackFetch = async (endpoint: string, body: object) => {
 
 	return new Response(result.body)
 	//return result
-}
-
-export const handleEvent = async (event: FormData) => {
-	//sigh idk what to do just yet
-
-	console.log("channel_name: ", event.get("channel_name"));
-	console.log("command: ", event.get("command"));
-	console.log("user_id: ", event.get("user_id"));
-
-	return sendMessage(event.get("channel_id") as string, "hi lol")
-	//return new Response("OK")
 }
 
 /*

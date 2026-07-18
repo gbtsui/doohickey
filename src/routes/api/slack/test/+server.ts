@@ -1,4 +1,4 @@
-import { handleEvent } from '$lib/slack/app';
+import { sendMessage } from '$lib/slack/app';
 
 export const POST = async ({ request }) => {
 	//verify signature hnnnnnnng
@@ -9,7 +9,7 @@ export const POST = async ({ request }) => {
 
 	if (type?.startsWith("application/json")) {
 		const body = await request.json();
-		console.log(body)
+		//console.log(body)
 
 		const result = JSON.stringify({
 			"challenge": body.challenge
@@ -21,7 +21,7 @@ export const POST = async ({ request }) => {
 	if (type?.startsWith("application/x-www-form-urlencoded")) {
 		const form = await request.formData();
 
-		console.log(form)
+		//console.log(form)
 
 		/*
 		const result = JSON.stringify({
@@ -29,9 +29,13 @@ export const POST = async ({ request }) => {
 		})
 
 		return new Response(result)*/
-		return handleEvent(form) //??? idk what im doing
-	}
 
+		//console.log("channel_name: ", form.get("channel_name"));
+		//console.log("command: ", form.get("command"));
+		//console.log("user_id: ", form.get("user_id"));
+
+		return sendMessage(form.get("channel_id") as string, "hi lol")
+	}
 
 	/*
 	switch (body.type) {
