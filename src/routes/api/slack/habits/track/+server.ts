@@ -32,8 +32,8 @@ export const POST = async ({ request }) => {
 			return sendMessage(form.get('channel_id') as string, 'not authorized! you not the owner :(');
 		} else {
 			try {
-				console.log('Attempting to query database...');
-				console.log('Database object:', database.db);
+				//console.log('Attempting to query database...');
+				//console.log('Database object:', database.db);
 
 				const habitList = await database.db.select().from(habit);
 
