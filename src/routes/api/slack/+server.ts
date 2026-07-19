@@ -1,8 +1,9 @@
-import { handleEvent } from '$lib/slack/app';
+//import { handleEvent } from '$lib/slack/app';
 
 export const POST = async ({ request }) => {
 	//verify signature hnnnnnnng
 
+	/*
 	const body = await request.json();
 
 	switch (body.type) {
@@ -13,4 +14,8 @@ export const POST = async ({ request }) => {
 	}
 
 	return new Response('OK');
+
+	 */
+
+	//do something idjgfka
 };
