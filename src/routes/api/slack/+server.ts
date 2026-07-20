@@ -38,9 +38,12 @@ export const POST = async ({ request }) => {
 	if (payload.type === 'block_actions') {
 		const { actions, channel, message, response_url, user } = payload;
 
+		/*
 		console.log(actions)
 		console.log(payload.state.values)
 		console.log(payload.state.values.habit_checkboxes_block.habit_checkbox.selected_options)
+
+		 */
 		const trackAction = actions.find((action: any) => action.action_id === 'track_habits');
 		if (trackAction) {
 			const selectedHabits: Array<{ id: string; name: string }> = [];
@@ -100,7 +103,7 @@ export const POST = async ({ request }) => {
 						type: "section",
 						text: {
 							type: "mrkdwn",
-							text: `including: ${habitNames}`
+							text: `tracked habits: ${habitNames}`
 						}
 					},
 					{
