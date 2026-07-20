@@ -1,12 +1,10 @@
 import {
-	type ButtonElement,
-	type CheckboxElement,
-	type InteractiveBlockyWocky,
 	sendMessage
 } from '$lib/slack/app';
 import { MEMBER_ID } from '$env/static/private';
 import * as database from '$lib/server/db';
 import { habit } from '$lib/server/db/schema';
+import type { ButtonElement, CheckboxElement, InteractiveBlockyWocky } from '$lib/slack/types';
 
 export const POST = async ({ request }) => {
 	const type = request.headers.get('content-type');
