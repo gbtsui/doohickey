@@ -1,4 +1,5 @@
 import {
+	sendEphemeral,
 	sendMessage, slackFetch
 } from '$lib/slack/app';
 import { MEMBER_ID } from '$env/static/private';
@@ -147,8 +148,8 @@ export const POST = async ({ request }) => {
 				}
 			} catch (e) {
 				console.error("Database query fuckup:", e);
-				if (e instanceof Error) return sendMessage(channel_id, `Error: ${e.message}`);
-				else return sendMessage(channel_id, "random ass error idk")
+				if (e instanceof Error) return sendEphemeral(channel_id, `Error: ${e.message}`);
+				else return sendEphemeral(channel_id, "random ass error idk")
 			}
 		}
 	}

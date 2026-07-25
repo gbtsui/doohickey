@@ -44,3 +44,12 @@ export const addReaction = (channel: string, timestamp: string, name: string) =>
 		name
 	})
 }
+export const sendEphemeral = (channel: string, text: string, blocks?: InteractiveBlockyWocky[]) =>  {
+	return slackFetch("postMessage", {
+		channel,
+		text,
+		blocks,
+		response_type: "ephemeral"
+	})
+}
+
