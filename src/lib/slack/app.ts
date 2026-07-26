@@ -21,6 +21,7 @@ export const slackFetch = async (endpoint: string, body: object) => {
 	const result = await response.json()
 
 	if (!result.ok) {
+		console.error(result)
 		throw new Error(result.error);
 	}
 
@@ -29,7 +30,7 @@ export const slackFetch = async (endpoint: string, body: object) => {
 }
 
 
-export const sendMessage = (channel: string, text: string, blocks?: InteractiveBlockyWocky[]) =>  {
+export const sendMessage = ({channel,text,blocks}:{channel: string, text: string, blocks?: InteractiveBlockyWocky[]}) =>  {
 	return slackFetch("chat.postMessage", {
 		channel,
 		text,
@@ -37,19 +38,21 @@ export const sendMessage = (channel: string, text: string, blocks?: InteractiveB
 	})
 }
 
-export const addReaction = (channel: string, timestamp: string, name: string) => {
+export const addReaction = ({channel,timestamp,name}:{channel: string, timestamp: string, name: string}) => {
 	return slackFetch("reactions.add", {
 		channel,
 		timestamp,
 		name
 	})
 }
-export const sendEphemeral = (channel: string, text: string, blocks?: InteractiveBlockyWocky[]) =>  {
-	return slackFetch("postMessage", {
+export const sendEphemeral = ({channel, text, blocks, user}:{channel: string, text: string,  user: string, blocks?: InteractiveBlockyWocky[]}) =>  {
+	return slackFetch("chat.postEphemeral", {
 		channel,
 		text,
 		blocks,
-		response_type: "ephemeral"
+		user
+		//response_type: "ephemeral"
+		//im genuinely stupid
 	})
 }
 

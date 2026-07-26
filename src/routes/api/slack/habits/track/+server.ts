@@ -29,7 +29,10 @@ export const POST = async ({ request }) => {
 		//console.log(request_uid)
 
 		if (request_uid !== MEMBER_ID) {
-			return sendMessage(form.get('channel_id') as string, 'not authorized! you not the owner :(');
+			return sendMessage({
+					channel: channel_id,
+					text: 'not authorized! you not the owner :('
+				});
 		} else {
 			try {
 				//console.log('Attempting to query database...');
@@ -144,12 +147,12 @@ export const POST = async ({ request }) => {
 						elements: [trackButton]
 					});
 
-					return sendMessage(channel_id, `bleh`, blocks);
+					return sendMessage({channel: channel_id, text: `bleh`, blocks});
 				}
 			} catch (e) {
 				console.error("Database query fuckup:", e);
-				if (e instanceof Error) return sendEphemeral(channel_id, `Error: ${e.message}`);
-				else return sendEphemeral(channel_id, "random ass error idk")
+				if (e instanceof Error) return sendEphemeral({channel: channel_id, user: request_uid, text: `Error: ${e.message}`});
+				else return sendEphemeral({channel: channel_id, user: request_uid, text: "random ass error idk"})
 			}
 		}
 	}

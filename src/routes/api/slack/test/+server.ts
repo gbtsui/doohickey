@@ -34,7 +34,10 @@ export const POST = async ({ request }) => {
 		//console.log("command: ", form.get("command"));
 		//console.log("user_id: ", form.get("user_id"));
 
-		return sendMessage(form.get("channel_id") as string, "hi lol")
+		return sendMessage({
+				channel: form.get("channel_id") as string,
+				text: "hi lol"
+			})
 	}
 
 	/*

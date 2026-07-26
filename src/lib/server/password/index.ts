@@ -17,12 +17,14 @@ export const MakeMinutelyPassword = async () => {
 //nvm ts too larpmaxxed and buggy apparently
  */
 
+import { SUPER_SECRET_HASH } from '$env/static/private';
 import {generate, verify} from "otplib"
 
 export const getToken  = async (): Promise<string> => {
-	return await generate({secret: String(process.env.SUPER_SECRET_HASH)})
+	console.log(SUPER_SECRET_HASH)
+	return await generate({secret: String(SUPER_SECRET_HASH)})
 }
 
 export const verifyToken = async (token: string) => {
-	return verify({secret: String(process.env.SUPER_SECRET_HASH), token})
+	return verify({secret: String(SUPER_SECRET_HASH), token})
 }

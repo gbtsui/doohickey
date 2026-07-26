@@ -34,6 +34,11 @@ testReminder.on('execution:failed', (ctx) => {
 
  */
 
+
+//TODO: fix ts because its genuinely broken rn
+
+/*
+
 import { sendMessage } from '$lib/slack/app';
 import { DEFAULT_REMINDER_CHANNEL_ID, MEMBER_ID, CRON_SECRET } from '$env/static/private';
 
@@ -64,3 +69,5 @@ export const GET = async (request) => {
 		});
 	}
 };
+
+ */
