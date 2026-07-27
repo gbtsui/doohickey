@@ -1,3 +1,10 @@
+//ohhhh BROTHER
+//okay ts gotta be read so it's a GET
+//maybe cache too?
+
+//im stupid ts was for entering
+
+/*
 import * as database from "$lib/server/db";
 import { habit } from '$lib/server/db/schema';
 import { json } from '@sveltejs/kit';
@@ -15,4 +22,4 @@ export const GET = async () => {
 	return json({success: true, data: result}, {status: 200});
 }
 
-//woof woof ig
+ */
