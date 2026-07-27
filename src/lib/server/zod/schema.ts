@@ -7,3 +7,20 @@ export const HabitRequestSchema = z.object({
 	OTP: z.string().length(6),
 })
 
+
+export const HabitEntrySchema = z.object({
+	created_at: z.date(),
+	id: z.string(),
+	habit_id: z.string(),
+})
+
+export const HabitSchema = z.object({
+	id: z.string(),
+	name: z.string(),
+	description: z.string(),
+	weeklyGoal: z.coerce.number(),
+	entries: z.array(HabitEntrySchema),
+})
+
+export const ListOfHabitsSchema = z.array(HabitSchema)
+
