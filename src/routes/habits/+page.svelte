@@ -19,7 +19,7 @@
 
     import {resolve} from "$app/paths";
     import {onMount} from "svelte";
-    import {ListOfHabitsSchema} from "$lib/server/zod/schema";
+    //import {ListOfHabitsSchema} from "$lib/server/zod/schema";
     import HabitsDisplayModule from "$lib/components/HabitsDisplayModule.svelte";
 
     let habits = $state<Array<Habit>>([])
@@ -33,6 +33,7 @@
             const data = await response.json();
             console.log(data)
 
+            /*
             const validated = ListOfHabitsSchema.safeParse(data.data)
 
             if (!validated.success) {
@@ -43,6 +44,8 @@
 
             habits = validated.data
             //return validated.data as Habit[]
+
+             */
         } catch (error) {
             console.error("oopsie poopsie! fetch failure, client is not a good puppy: ", error)
             oopsie_error = "failed to fetch habits data :("
