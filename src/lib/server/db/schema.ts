@@ -1,5 +1,5 @@
 import { pgTable, uuid, text, timestamp, integer } from 'drizzle-orm/pg-core';
-import {defineRelations} from "drizzle-orm"
+import {relations} from "drizzle-orm"
 
 export const habit = pgTable("habit", {
 	id: uuid("id").defaultRandom().primaryKey(),
@@ -16,11 +16,13 @@ export const habitEntry = pgTable("habit_entry", {
 	created_at: timestamp("created_at").defaultNow().notNull(),
 });
 
-export const relations = defineRelations({habit, habitEntry}, (r) => ({
-	habitEntry: {
-		habit_id: r.one.habit({
-			from: r.habitEntry.habit_id,
-			to: r.habit.id,
-		})
-	}
-}))
+export const habitRelations = relations(habit, ({ many }) => ({
+	entries: many(habitEntry)
+}));
+
+export const habitEntryRelations = relations(habitEntry, ({ one }) => ({
+	habit: one(habit, {
+		fields: [habitEntry.habit_id],
+		references: [habit.id]
+	})
+}));

@@ -1,5 +1,5 @@
 import * as database from "$lib/server/db";
-import { habit, habitEntry } from '$lib/server/db/schema';
+import { habitEntry } from '$lib/server/db/schema';
 import { json } from '@sveltejs/kit';
 import {gte} from 'drizzle-orm';
 import { ListOfHabitsSchema } from '$lib/server/zod/schema';
@@ -17,7 +17,7 @@ export const GET = async () => {
 					orderBy: (entries, { desc }) => [desc(entries.created_at)]
 				}
 			}
-		}).from(habit);
+		});
 
 
 		/*

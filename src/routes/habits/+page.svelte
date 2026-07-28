@@ -30,9 +30,11 @@
         try {
             const response = await fetch(resolve("/api/habits/fetch-like-a-puppy"))
             //const response = await fetch(resolve("/api/habits/entry"))
-            const data = await response.json();
-            console.log(data)
+            const parsedRes = await response.json();
+            console.log(parsedRes);
 
+            habits = parsedRes.data;
+            isLoading = false
             /*
             const validated = ListOfHabitsSchema.safeParse(data.data)
 
@@ -85,7 +87,9 @@
     {/if}
     <div class="mt-2 w-[90vw] mx-[10vw] flex flex-col gap-4">
         {#each habits as habitInstanceObjectRaghghgh (habitInstanceObjectRaghghgh.id)}
-            <HabitsDisplayModule habitObject={habitInstanceObjectRaghghgh}></HabitsDisplayModule>
+            <div>
+                <HabitsDisplayModule habitObject={habitInstanceObjectRaghghgh}></HabitsDisplayModule>
+            </div>
         {/each}
     </div>
 </div>
