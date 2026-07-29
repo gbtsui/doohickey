@@ -34,7 +34,6 @@ testReminder.on('execution:failed', (ctx) => {
 
  */
 
-
 //TODO: fix ts because its genuinely broken rn
 
 /*
@@ -71,3 +70,46 @@ export const GET = async (request) => {
 };
 
  */
+
+import { type RequestHandler } from '@sveltejs/kit';
+import { CRON_SECRET, DEFAULT_REMINDER_CHANNEL_ID, MEMBER_ID } from '$env/static/private';
+import { sendMessage } from '$lib/slack/app';
+
+export const GET: RequestHandler = async ({ request }) => {
+	//okay so next time destructure ts jawn
+	try {
+		const authHeader = request.headers.get('authorization');
+
+		if (authHeader !== `Bearer ${CRON_SECRET}`) {
+			return new Response('Unauthorized', { status: 401 });
+		}
+
+		await sendMessage({
+			channel: DEFAULT_REMINDER_CHANNEL_ID,
+			text: `<@${MEMBER_ID}> TRACK HABITS.`
+		});
+
+		//dwarves won't fly so high
+
+		console.log('Reminder sent successfully!');
+
+		return new Response(
+			JSON.stringify({
+				success: true,
+				timestamp: new Date().toISOString()
+			}),
+			{
+				headers: { 'Content-Type': 'application/json' }
+			}
+		);
+	} catch (err) {
+		console.error("failed to send reminder", err);
+
+		return new Response(JSON.stringify({
+			error: 'Failed to send reminder'
+		}), {
+			status: 500,
+			headers: { 'Content-Type': 'application/json' }
+		});
+	}
+};
