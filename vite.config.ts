@@ -6,7 +6,14 @@ import { sveltekit } from '@sveltejs/kit/vite';
 
 export default defineConfig({
 	server: {
-		allowedHosts: ["localhost", ".gbtsui.dev"]
+		allowedHosts: ["localhost", ".gbtsui.dev"],
+		proxy: {
+			"/lets-go/": {
+				target: "http://localhost:8080",
+				changeOrigin: true,
+				rewrite: (path) => path.replace(/^\/api\/go/, '/lets-go/')
+			}
+		}
 	},
 	plugins: [
 		tailwindcss(),
@@ -27,7 +34,7 @@ export default defineConfig({
 					config.include.push('../drizzle.config.ts');
 				}
 			}
-		})
+		}),
 	],
 	test: {
 		expect: { requireAssertions: true },
@@ -56,5 +63,5 @@ export default defineConfig({
 				}
 			}
 		]
-	}
+	},
 });

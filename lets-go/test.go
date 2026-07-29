@@ -1,10 +1,8 @@
-package handler
+package main
 
 import (
     "encoding/json"
-    "log"
     "net/http"
-    "doohickey/lets-go"
 )
 
 var test string = "hi"
@@ -14,7 +12,7 @@ func add(arg1 int, arg2 int) int { return arg1+arg2 } //i might understand it no
 
 
 type PingRequest struct {
-    Body string `json:"body"`
+    //Body string `json:"body"`
     SillyPayload int `json:"silly_payload"`
 }
 
@@ -40,13 +38,13 @@ func TestHandler(w http.ResponseWriter, r *http.Request) {
     }
 
     response := PingResponse {
-        Body: "successful!",
-        SillyPayload: req.SillyPayload + 67
+        Body: test,
+        SillyPayload: req.SillyPayload + 67,
     }
 
     w.Header().Set("Content-Type", "application/json")
     w.WriteHeader(http.StatusOK)
-    json.NewEncoder(w).Encode()
+    json.NewEncoder(w).Encode(response)
 }
 
 /*
