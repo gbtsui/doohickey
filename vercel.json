@@ -7,7 +7,7 @@
   ],
   "functions": {
     "lets-go/*.go": {
-      "runtime": "go"
+      "runtime": "go@1.26.3"
     }
   }
 }
