@@ -6,7 +6,7 @@
     }
   ],
   "functions": {
-    "lets-go/*.go": {
+    "/api/**/*.go": {
       "runtime": "go@1.26.3"
     }
   }
