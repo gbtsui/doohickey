@@ -1,42 +1,22 @@
-# sv
+# doohickey
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+## Raison d'Être
 
-## Creating a project
+When one is trapped in a prison of his own making, when he has run out of fuel to keep going
 
-If you're seeing this, you've probably already done this step. Congrats!
+It becomes difficult to get out when the bread outside the bars tempts his hungry stomach
 
-```sh
-# create a new project
-npx sv create my-app
-```
+type stuff
 
-To recreate this project with the same configuration:
+I wanted to build something low-pressure where I could experiment around with code again and make something
+that I could be maybe-ish proud of. Right now, it's just a big mess of different things that happen to be in 
+the same codebase. A Markdown parser, a habit tracker (with integration into Slack), a weird intro to Go via
+a HTTP server. None of these really work together (I mean, they *could* if I thought of it) but they all kinda
+serve the same purpose, the same telos.
 
-```sh
-# recreate this project
-npx sv@0.16.2 create --template minimal --types ts --add prettier eslint vitest="usages:unit,component" playwright tailwindcss="plugins:typography" drizzle="database:postgresql+postgresql:postgres.js+docker:no" sveltekit-adapter="adapter:auto" --install npm doohickey
-```
+That is, "ship and get back into shipping".
 
-## Developing
+Not in the fandom sense of shipping, by the way.
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
 
-```sh
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```sh
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+Uses SvelteKit, TypeScript, Go, Drizzle, Postgres, and the Slack API.
