@@ -20,3 +20,6 @@ Not in the fandom sense of shipping, by the way.
 
 
 Uses SvelteKit, TypeScript, Go, Drizzle, Postgres, and the Slack API.
+
+AI transparency: LLMs were used for debugging. Sometimes you gotta use the tools you got at hand to prevent yourself
+from moving too slow. Would have defeated the purpose to write the entire project with Claude, though.
