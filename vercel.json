@@ -5,9 +5,16 @@
       "schedule": "0 21 * * *"
     }
   ],
-  "functions": {
-    "api/**/*.go": {
-      "runtime": "go"
+  "services": {
+    "frontend": {
+      "root": "."
+    },
+    "go-server": {
+      "root": "go-makes-me-want-to-stop/"
     }
-  }
+  },
+  "rewrites": [
+    { "source": "/lets-go/(.*)", "destination": { "service": "go-server" } },
+    { "source": "/(.*)", "destination": { "service": "frontend" } }
+  ]
 }
