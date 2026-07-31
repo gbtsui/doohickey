@@ -10,7 +10,8 @@
       "root": "."
     },
     "go-server": {
-      "root": "go-makes-me-want-to-stop/"
+      "root": "go-makes-me-want-to-stop/",
+      "entrypoint": "main.go"
     }
   },
   "rewrites": [
